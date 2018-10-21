@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {fetchSchedule, fetchPicks, fetchPoints, createPick} from '../actions';
+import {Button} from "react-bootstrap";
+
 
 
 class Header extends Component {
@@ -110,7 +112,8 @@ class Header extends Component {
         {this.state.name ==="Visitor" ? 
           <ul>
             <li>{this.state.name}</li>   
-            <li><Link to="/login"><button>Login</button></Link></li>
+            <li><Link to="/login"><Button>Login</Button></Link></li>
+            <li><Link to="/createaccount"><Button>New User</Button></Link></li>
           </ul> :
           <ul>
             <li>{this.state.name}</li>
