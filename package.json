@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.0.1",
     "fullcalendar-reactwrapper": "^1.0.7",
     "moment-timezone": "^0.5.21",
     "passport": "^0.4.0",
@@ -44,4 +45,3 @@
     }
   ]
 }
-
