@@ -119,7 +119,7 @@ class Header extends Component {
             <li>{this.state.name}</li>
             <li>Total points: {this.props.points.lifetime}</li>
             <li>Current points: {this.props.points.lifetime - this.props.points.spent}</li>
-            <li><button onClick={this._logout}>Logout</button></li>
+            <li><Button onClick={this._logout}>Logout</Button></li>
           </ul>
         }
       </header>
