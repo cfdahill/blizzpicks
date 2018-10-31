@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {Button} from "react-bootstrap";
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {fetchSchedule, fetchPicks, fetchPoints, createPick} from '../actions';
-import {Button} from "react-bootstrap";
-
 
 
 class Header extends Component {
@@ -36,7 +35,6 @@ class Header extends Component {
   //goes through the schedule to find events that are over, compares the winner to user picks, 
   //moves scored picks to archive, and updates the score.  Pushes all this to the database
   scoreOldEvents = () => {
-    console.log(this.props.picks, this.props.events, this.props.points);
     let addScore = 0;
     let archivePicks = this.props.events.filter(event => ((event.homeScore === Math.ceil(event.bestOf/2)) || (event.awayScore === Math.ceil(event.bestOf/2)))).map(event => {
       let winner = '';
@@ -64,7 +62,6 @@ class Header extends Component {
         points: points,
         archivePicks: archivePicks
     }};
-    console.log(dataToPush);
     this.props.createPick(this.state.id, dataToPush, () => {
       this.props.fetchPicks(this.state.id)
     });
@@ -76,10 +73,8 @@ class Header extends Component {
     console.log('handleClick')
     console.log('logging out')
     axios.post('/auth/logout').then(response => {
-      console.log(response.data)
       localStorage.clear();
       if (response.status === 200) {
-        console.log(this.state);
         this.setState({name: 'Visitor'})
       }
     })
@@ -100,7 +95,6 @@ class Header extends Component {
       let picks = [];
       (picks = propPicks.filter(pick => pick.game !== game._id)).push(picked);
       const dataToPush = {picks: picks};
-      console.log(dataToPush);
       this.props.createPick(this.state.id, dataToPush, () => {
         this.props.fetchPicks(this.state.id)
       });
@@ -110,16 +104,19 @@ class Header extends Component {
     return(
       <header>
         {this.state.name ==="Visitor" ? 
-          <ul>
-            <li>{this.state.name}</li>   
-            <li><Link to="/login"><Button>Login</Button></Link></li>
-            <li><Link to="/createaccount"><Button>New User</Button></Link></li>
+          <ul className="headerUL">
+            <li className="headerLI"><Link to="/login"><Button>Login</Button></Link></li>
+            <li className="headerLI"><Link to='/createaccount'><Button>New User</Button></Link></li>
+            <li className="headerUserName headerLI">{this.state.name}</li>   
           </ul> :
-          <ul>
-            <li>{this.state.name}</li>
-            <li>Total points: {this.props.points.lifetime}</li>
-            <li>Current points: {this.props.points.lifetime - this.props.points.spent}</li>
-            <li><Button onClick={this._logout}>Logout</Button></li>
+          <ul className="headerUL">
+            <li className="headerLI"><Button onClick={this._logout}>Logout</Button></li>
+            <li className="headerLI">Current points: <br></br>
+              <div className="headerPoints">{this.props.points.lifetime - this.props.points.spent}</div></li>
+            <li className="headerLI">Total points: <br></br>
+              <div className="headerPoints">{this.props.points.lifetime}</div></li>
+            <li className="headerUserName headerLI">{this.state.name}</li>   
+
           </ul>
         }
       </header>

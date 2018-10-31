@@ -6,6 +6,7 @@ import FullCalendar from 'fullcalendar-reactwrapper';
 import moment from 'moment-timezone';
 import {ToggleButtonGroup, ToggleButton, Button, Modal} from "react-bootstrap";
 import 'fullcalendar-reactwrapper/dist/css/fullcalendar.min.css';
+import '../css/calendar.css';
 
 //calendar is pretty much done, will need to come back to update info being passed to modal
 
@@ -33,23 +34,24 @@ class Calendar extends Component {
 
     //Create array of events for calendar based on the data from the reducers
     events = () => {
-      console.log(this.props);
         let events = this.props.events.map( event => ({
-            title: `${event.league}: ${event.awayTeam} vs. ${event.homeTeam}`,
+            title: `${event.league.toUpperCase()}: ${event.awayTeam} vs. ${event.homeTeam}`,
             start: moment.tz(event.date, 'America/Phoenix'),
-            game: event.game,
-            watch: event.watch[0]
+            league: event.league,
+            watch: event.watch[0],
+            className: `cal${event.league}`
             }));
         this.setState({events});
     }
 
     //Create buttons to toggle the visibility of events on/off
     renderButton = (game) => {
+      console.log(game.game);
       const i = game.number;
       let events = this.state.events;
       let hideEvents = this.state.hideEvents;
       return(
-        <ToggleButton value={game.game} key={game.game} onChange={ () => {
+        <ToggleButton className={`calButton cal${game.game}`} value={game.game} key={game.game} onChange={ () => {
           //For whatever reason, if this is in a different method it creates an infinate loop.
           if(game.checked){
             game.checked = false;
@@ -73,16 +75,15 @@ class Calendar extends Component {
 
   //show Modal
   handleShow = (e) => {
-    console.log(e);
     const date = moment.tz(e.start, 'America/Phoenix');
     const guessTZ = moment.tz.guess();
-    console.log(date);
     let modalEvent = {
       title: e.title,
       date: moment(date._i).tz(guessTZ).format('MMMM D, YYYY'),
       time: moment(date._i).tz(guessTZ).format('h:mm a z'),
       game: e.game,
-      watch: e.watch
+      watch: e.watch,
+      league: e.league
     }
     this.setState({ modalEvent, show: true });
   }
@@ -90,14 +91,13 @@ class Calendar extends Component {
     render() {
         return(
           <div>
-            <div id="checkboxes">
+            <div className="calCheckbox">
               <ToggleButtonGroup type="checkbox">
                 {this.state.value.map(game => (this.renderButton(game)))}
               </ToggleButtonGroup>
             </div>
             <div 
                 id="calContainer"
-                style={{height: 600, width: 800}}    
                 /*Style of height and width are needed here but don't need to be numbers shown, might be able to move to css file*/
             >
                 <FullCalendar
@@ -109,20 +109,21 @@ class Calendar extends Component {
                     }}
                     events = {this.state.events}
                     eventClick = {e => this.handleShow(e)}
+                    list = {this.state.events}
                 />
             </div> 
             <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
+              <Modal.Header closeButton className={`cal${this.state.modalEvent.league}`}>
                 <Modal.Title>{this.state.modalEvent.title}</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body className={`cal${this.state.modalEvent.league}`}>
                 Date: {this.state.modalEvent.date} 
                 <br></br>
                 Time: {this.state.modalEvent.time}
                 <br></br>
-                Watch: <a href={this.state.modalEvent.watch} target="blank">Twitch</a>
+                Watch: <a className='cala' href={this.state.modalEvent.watch} target="blank">Twitch</a>
               </Modal.Body>
-              <Modal.Footer>
+              <Modal.Footer className={`cal${this.state.modalEvent.league}`}>
                 <Button onClick={this.handleClose}>Close</Button>
               </Modal.Footer>
         </Modal>
