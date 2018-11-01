@@ -18,7 +18,7 @@ export default class Footer extends Component {
           The real fun of this site are the picks.  Before a match starts you are able to pick the team/player that you think will win the match.  Pick correctly and you get points.  Right now these points are only for bragging rights but maybe in the future, the store that exists is a concept of being able to use your points to buy goodies.
         </p>
         <p>
-          This site is still under development.  As a result, there are still some bugs.  Refreshing the page should help, especially after logging in.  It curretnly has only been formatted for smart phones.  It will still work on tablets and computers but it will look wonky.
+          This site is still under development.  There were issues deploying it so there is currently no database connected.  As a result, it is not currently possible for user data, picks, event scores, etc. to be saved.  And it wouldn't be a web app if there weren't some bugs in.  I hope you enjoy the concept of BlizzPicks!
         </p>
         <Link to="/login"><Button>Login</Button></Link>
         <Link to="/createaccount"><Button>New User</Button></Link>

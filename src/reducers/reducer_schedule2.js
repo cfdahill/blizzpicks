@@ -1,4 +1,4 @@
-export default function   {
+export default function()   {
   return [
     {
       "_id" :   "5bc3be45a87e3e04d49241a1" ,
