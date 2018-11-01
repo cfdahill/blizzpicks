@@ -15,10 +15,10 @@ class Picks extends Component {
   }
  
   componentDidMount = () => {
-    if(localStorage.getItem("_id")) {
-      this.props.fetchPicks(this.state.id);
-    }
-    this.props.fetchSchedule();
+    // if(localStorage.getItem("_id")) {
+    //   this.props.fetchPicks(this.state.id);
+    // }
+    // this.props.fetchSchedule();
   }
 
   //saves user's picks to database and rerenders appropriate component
@@ -36,9 +36,9 @@ class Picks extends Component {
       picks: picks
     }};
     console.log(dataToPush);
-    this.props.createPick(this.state.id, dataToPush, () => {
-      this.props.fetchPicks(this.state.id)
-    });
+    // this.props.createPick(this.state.id, dataToPush, () => {
+    //   this.props.fetchPicks(this.state.id)
+    // });
   }
 
   //renders each individual event information with buttons for picks

@@ -26,10 +26,10 @@ class Calendar extends Component {
     }
 
     componentDidMount = () => {
-        this.props.fetchSchedule()
-          .then(result => {
+        // this.props.fetchSchedule()
+        //   .then(result => {
             this.events();
-          });
+          // });
     }
 
     //Create array of events for calendar based on the data from the reducers

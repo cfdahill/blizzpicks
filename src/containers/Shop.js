@@ -24,10 +24,10 @@ class Shop extends Component {
   }
 
   componentDidMount = () => {
-    if(localStorage.getItem("name")) {
-      this.props.fetchPoints(this.state.id);
-      this.props.fetchRewards(this.state.id);
-    }
+    // if(localStorage.getItem("name")) {
+    //   this.props.fetchPoints(this.state.id);
+    //   this.props.fetchRewards(this.state.id);
+    // }
     this.setState({shop: this.props.shop});
   }
 
@@ -111,9 +111,9 @@ class Shop extends Component {
         rewards: rewards
     }};
     console.log(dataToPush);
-    this.props.createPick(this.state.id, dataToPush, () => {
-      this.props.fetchPoints(this.state.id);
-    });
+    // this.props.createPick(this.state.id, dataToPush, () => {
+    //   this.props.fetchPoints(this.state.id);
+    // });
     this.setState({
     show: false,
     quantity: 1,
@@ -168,7 +168,7 @@ function mapStateToProps(state) {
   return {
     points: state.points,
     shop: state.shop,
-    rewards: state.rewards
+    // rewards: state.rewards
   };
 }
 
