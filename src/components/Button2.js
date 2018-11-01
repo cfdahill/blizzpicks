@@ -12,7 +12,7 @@ changeClass() {
 
   render(){
     return(
-    <Button onClick={e=>changeClass()} className={`pickButton ${this.state.picked}`}>{this.props.name}</Button>
+    <Button onClick={e=>this.changeClass()} className={`pickButton ${this.state.picked}`}>{this.props.name}</Button>
     )
     }
 
