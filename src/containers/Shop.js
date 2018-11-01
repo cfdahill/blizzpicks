@@ -27,8 +27,8 @@ class Shop extends Component {
     if(localStorage.getItem("name")) {
       this.props.fetchPoints(this.state.id);
       this.props.fetchRewards(this.state.id);
-      this.setState({shop: this.props.shop});
     }
+    this.setState({shop: this.props.shop});
   }
 
   //Create buttons to toggle the visibility of events on/off

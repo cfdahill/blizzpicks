@@ -17,6 +17,7 @@ h1 {
     text-align: center;
 }
 
-.homeContent {
+.content {
   margin: 10vw;
+  min-height:57vh;
 }
