@@ -4,7 +4,7 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 let MONGO_URL
-const MONGO_LOCAL_URL = "mongodb://localhost:27017/esportdb" 
+const MONGO_LOCAL_URL = "mongodb://heroku_x1snkg0z:im3n60d42bqa8jh5qtmr1r56pi@ds143143.mlab.com:43143/heroku_x1snkg0z"; 
 
 if (process.env.MONGODB_URI) {
 	mongoose.connect(process.env.MONGODB_URI)
