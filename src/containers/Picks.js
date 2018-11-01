@@ -12,7 +12,6 @@ class Picks extends Component {
 
   state = {
     id: localStorage.getItem("_id"),
-    picks: []
   }
  
   componentDidMount = () => {
@@ -20,13 +19,11 @@ class Picks extends Component {
     //   this.props.fetchPicks(this.state.id);
     // }
     // this.props.fetchSchedule();
-    this.state({picks: this.props.picks})
   }
 
   //saves user's picks to database and rerenders appropriate component
   savePick = (team, game) => {
-    // const propPicks = this.props.picks;
-    const propPicks = this.state.picks;
+    const propPicks = this.props.picks;
     const picked = {
       date: game.date,
       game: game._id,
@@ -76,32 +73,32 @@ class Picks extends Component {
                 </Row>
                     {moment().isAfter(event.date) ?
                       <Row>
-                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton tooLate` : `tooLate pickedDiv picksLeftButton`} xs={2}>
-                        <Button className={pick === event.awayTeam ? `picked pickButton` : `pickButton picked`}>
+                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton tooLate` : `tooLate notPickedDiv picksLeftButton`} xs={2}>
+                        <Button className={pick === event.awayTeam ? `picked pickButton` : `pickButton notPicked`}>
                           {event.awayTeam}
                         </Button>
                       </Col>
-                      <Col xs={2} className={pick === event.homeTeam ? `notPickedDiv tooLate` : `tooLate notPickedDiv`}>
-                        <Button className={pick === event.homeTeam ? `notPicked pickButton` : `pickButton notPicked`}>
+                      <Col xs={2} className={pick === event.homeTeam ? `pickedDiv tooLate` : `tooLate notPickedDiv`}>
+                        <Button className={pick === event.homeTeam ? `picked pickButton` : `pickButton notPicked`}>
                           {event.homeTeam}
                         </Button>
                       </Col>
                       </Row>
                     : 
                       <Row>
-                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton` : `pickedDiv picksLeftButton`} xs={2}>
+                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton` : `notPickedDiv picksLeftButton`} xs={2}>
                         <Button 
                           type="submit" 
-                          className={pick === event.awayTeam ? `picked pickButton` : `picked pickButton`}
+                          className={pick === event.awayTeam ? `picked pickButton` : `notPicked pickButton`}
                           onClick={() => {this.savePick(event.awayTeam, event)}}
                         >
                           {event.awayTeam}
                         </Button>
                       </Col>
-                      <Col xs={2} className={pick === event.homeTeam ? `notPickedDiv` : `notPickedDiv`}>
+                      <Col xs={2} className={pick === event.homeTeam ? `pickedDiv` : `notPickedDiv`}>
                         <Button 
                             type="submit" 
-                            className={pick === event.homeTeam ? `notPicked pickButton` : `notPicked pickButton`}
+                            className={pick === event.homeTeam ? `picked pickButton` : `notPicked pickButton`}
                             onClick={() => {this.savePick(event.homeTeam, event)}}
                           >
                             {event.homeTeam}
@@ -124,10 +121,11 @@ class Picks extends Component {
     return(
       <div>
         <h1>Picks</h1>
-        <p>When clicking the team, the chosen team would turn blue while the other would turn red to indicate what team you have picked.</p>
         <div>
           {this.match()}
         </div>
+        <p>When clicking the team, the chosen team would turn blue while the other would turn red to indicate what team you have picked.</p>
+        <img className="shopPic" src={`/images/picks.png`} alt='image of page'></img>
       </div>
     )
   }
