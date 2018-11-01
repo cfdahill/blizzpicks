@@ -21,7 +21,8 @@ export default class App extends Component {
          <div>
           <Header />
           <Navibar />
-          <Switch className='content'>
+          <div className='content'>
+          <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/createaccount" component={CreateAccount} />
@@ -30,6 +31,7 @@ export default class App extends Component {
             <Route exact path="/calendar" component={Calendar} />
             <Route component={Home} />
           </Switch>
+          </div>
          </div>
         </Router>
        <Footer />
