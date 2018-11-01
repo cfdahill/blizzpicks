@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 export default class Footer extends Component {
   render() {
     return(
-      <div>
+      <div className='homeContent'>
         <h1>BlizzPicks</h1>
         <p>
           Welcome to BlizzPicks.com.  This site has no affiliation  with Blizzard Entertainment; it was built to celebrate Blizzard eSports.  This site is currently in its alpha stage so you may notice that there are some options in the menu bar that won't work.  I built this site for several reasons but ultimately, I built this out of a love of watching the Blizzard eSports events.

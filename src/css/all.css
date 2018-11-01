@@ -16,3 +16,7 @@ button {
 h1 {
     text-align: center;
 }
+
+.homeContent {
+  margin: 10vw;
+}
