@@ -18,10 +18,10 @@ export default class App extends Component {
     return (
       <div className="App">
        <Router>
+         <div>
           <Header />
           <Navibar />
-          <div className='content'>
-          <Switch>
+          <Switch className='content'>
             <Route exact path="/login" component={Login} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/createaccount" component={CreateAccount} />
