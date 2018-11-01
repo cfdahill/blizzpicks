@@ -108,7 +108,7 @@ class Shop extends Component {
     const dataToPush = {
       dataToPush: {
         points: points,
-        rewards: rewards
+        // rewards: rewards
     }};
     console.log(dataToPush);
     // this.props.createPick(this.state.id, dataToPush, () => {
