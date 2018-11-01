@@ -109,6 +109,7 @@ class Calendar extends Component {
                     }}
                     events = {this.state.events}
                     eventClick = {e => this.handleShow(e)}
+                    eventLimit = {3}
                     list = {this.state.events}
                 />
             </div> 

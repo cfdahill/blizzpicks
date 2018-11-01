@@ -99,12 +99,12 @@ class Shop extends Component {
   savePurchase = (totalCost) => {
     let points = this.props.points;
     points.spent = this.props.points.spent + totalCost;
-    let rewards = this.props.rewards;
-    rewards.push({
-      date: moment.now(),
-      item: this.state.modalEvent._id,
-      cost: totalCost
-    });
+    // let rewards = this.props.rewards;
+    // rewards.push({
+    //   date: moment.now(),
+    //   item: this.state.modalEvent._id,
+    //   cost: totalCost
+    // });
     const dataToPush = {
       dataToPush: {
         points: points,

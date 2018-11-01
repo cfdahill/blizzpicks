@@ -4,6 +4,7 @@ import {fetchSchedule, fetchPicks, createPick} from '../actions';
 import _ from 'lodash';
 import moment from 'moment-timezone';
 import {Well, Grid, Row, Col, Button} from "react-bootstrap";
+import Button2 from '../components/Button2';
 // import '../tempCSS.css';
 import '../css/picks.css';
 
@@ -19,11 +20,13 @@ class Picks extends Component {
     //   this.props.fetchPicks(this.state.id);
     // }
     // this.props.fetchSchedule();
+    this.state({picks: this.props.picks})
   }
 
   //saves user's picks to database and rerenders appropriate component
   savePick = (team, game) => {
-    const propPicks = this.props.picks;
+    // const propPicks = this.props.picks;
+    const propPicks = this.state.picks;
     const picked = {
       date: game.date,
       game: game._id,
@@ -74,35 +77,42 @@ class Picks extends Component {
                     {moment().isAfter(event.date) ?
                       <Row>
                       <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton tooLate` : `tooLate notPickedDiv picksLeftButton`} xs={2}>
-                        <Button className={pick === event.awayTeam ? `picked pickButton` : `pickButton notPicked`}>
+                        {/* <Button className={pick === event.awayTeam ? `picked pickButton` : `pickButton notPicked`}>
                           {event.awayTeam}
-                        </Button>
+                        </Button> */}
+                        <Button2 name={event.awayTeam} />
                       </Col>
                       <Col xs={2} className={pick === event.homeTeam ? `pickedDiv tooLate` : `tooLate notPickedDiv`}>
-                        <Button className={pick === event.homeTeam ? `picked pickButton` : `pickButton notPicked`}>
+                        {/* <Button className={pick === event.homeTeam ? `picked pickButton` : `pickButton notPicked`}>
                           {event.homeTeam}
-                        </Button>
+                        </Button> */}
+                        <Button2 name={event.homeTeam} />
+
                       </Col>
                       </Row>
                     : 
                       <Row>
                       <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton` : `notPickedDiv picksLeftButton`} xs={2}>
-                        <Button 
+                        {/* <Button 
                           type="submit" 
                           className={pick === event.awayTeam ? `picked pickButton` : `notPicked pickButton`}
                           onClick={() => {this.savePick(event.awayTeam, event)}}
                         >
                           {event.awayTeam}
-                        </Button>
+                        </Button> */}
+                         <Button2 name={event.awayTeam} />
+
                       </Col>
                       <Col xs={2} className={pick === event.homeTeam ? `pickedDiv` : `notPickedDiv`}>
-                        <Button 
+                        {/* <Button 
                             type="submit" 
                             className={pick === event.homeTeam ? `picked pickButton` : `notPicked pickButton`}
                             onClick={() => {this.savePick(event.homeTeam, event)}}
                           >
                             {event.homeTeam}
-                          </Button>
+                          </Button> */}
+                     <Button2 name={event.homeTeam} />
+
                       </Col>
                     </Row>
                     }
