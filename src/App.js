@@ -18,9 +18,9 @@ export default class App extends Component {
     return (
       <div className="App">
        <Router>
-         <div className='content'>
           <Header />
           <Navibar />
+          <div className='content'>
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/admin" component={Admin} />
