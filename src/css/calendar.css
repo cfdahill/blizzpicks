@@ -26,6 +26,10 @@
 }
 
 /* calendar */
+
+#calContainer{
+  margin-left:-5vw;
+}
 .calCheckbox{
     margin-bottom:10px;
 }
