@@ -4,7 +4,6 @@ import {fetchSchedule, fetchPicks, createPick} from '../actions';
 import _ from 'lodash';
 import moment from 'moment-timezone';
 import {Well, Grid, Row, Col, Button} from "react-bootstrap";
-import Button2 from '../components/Button2';
 // import '../tempCSS.css';
 import '../css/picks.css';
 
@@ -76,43 +75,36 @@ class Picks extends Component {
                 </Row>
                     {moment().isAfter(event.date) ?
                       <Row>
-                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton tooLate` : `tooLate notPickedDiv picksLeftButton`} xs={2}>
-                        {/* <Button className={pick === event.awayTeam ? `picked pickButton` : `pickButton notPicked`}>
+                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton tooLate` : `tooLate pickedDiv picksLeftButton`} xs={2}>
+                        <Button className={pick === event.awayTeam ? `picked pickButton` : `pickButton picked`}>
                           {event.awayTeam}
-                        </Button> */}
-                        <Button2 name={event.awayTeam} />
+                        </Button>
                       </Col>
-                      <Col xs={2} className={pick === event.homeTeam ? `pickedDiv tooLate` : `tooLate notPickedDiv`}>
-                        {/* <Button className={pick === event.homeTeam ? `picked pickButton` : `pickButton notPicked`}>
+                      <Col xs={2} className={pick === event.homeTeam ? `notPickedDiv tooLate` : `tooLate notPickedDiv`}>
+                        <Button className={pick === event.homeTeam ? `notPicked pickButton` : `pickButton notPicked`}>
                           {event.homeTeam}
-                        </Button> */}
-                        <Button2 name={event.homeTeam} />
-
+                        </Button>
                       </Col>
                       </Row>
                     : 
                       <Row>
-                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton` : `notPickedDiv picksLeftButton`} xs={2}>
-                        {/* <Button 
+                      <Col className={pick === event.awayTeam ? `pickedDiv picksLeftButton` : `pickedDiv picksLeftButton`} xs={2}>
+                        <Button 
                           type="submit" 
-                          className={pick === event.awayTeam ? `picked pickButton` : `notPicked pickButton`}
+                          className={pick === event.awayTeam ? `picked pickButton` : `picked pickButton`}
                           onClick={() => {this.savePick(event.awayTeam, event)}}
                         >
                           {event.awayTeam}
-                        </Button> */}
-                         <Button2 name={event.awayTeam} />
-
+                        </Button>
                       </Col>
-                      <Col xs={2} className={pick === event.homeTeam ? `pickedDiv` : `notPickedDiv`}>
-                        {/* <Button 
+                      <Col xs={2} className={pick === event.homeTeam ? `notPickedDiv` : `notPickedDiv`}>
+                        <Button 
                             type="submit" 
-                            className={pick === event.homeTeam ? `picked pickButton` : `notPicked pickButton`}
+                            className={pick === event.homeTeam ? `notPicked pickButton` : `notPicked pickButton`}
                             onClick={() => {this.savePick(event.homeTeam, event)}}
                           >
                             {event.homeTeam}
-                          </Button> */}
-                     <Button2 name={event.homeTeam} />
-
+                          </Button>
                       </Col>
                     </Row>
                     }
@@ -131,6 +123,7 @@ class Picks extends Component {
     return(
       <div>
         <h1>Picks</h1>
+        <p>When clicking the team, the chosen team would turn blue while the other would turn red to indicate what team you have picked.</p>
         <div>
           {this.match()}
         </div>
