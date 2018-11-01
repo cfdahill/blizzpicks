@@ -12,6 +12,7 @@ class Picks extends Component {
 
   state = {
     id: localStorage.getItem("_id"),
+    picks: []
   }
  
   componentDidMount = () => {
